@@ -4,11 +4,11 @@
 
 ```javascript
 grunt.initConfig({
-  sass: {                              // Task
+  slim: {                              // Task
     dist: {                            // Target
       files: {                         // Dictionary of files
-        'main.css': 'main.scss',       // 'destination': 'source'
-        'widgets.css': 'widgets.scss'
+        'index.html': 'index.slim',     // 'destination': 'source'
+        'sidebar.html': 'sidebar.slim'
       }
     },
     dev: {                             // Another target
@@ -16,30 +16,30 @@ grunt.initConfig({
         style: 'expanded'
       },
       files: {
-        'main.css': 'main.scss',
-        'widgets.css': [
-          'button.scss',
-          'tab.scss',
-          'debug.scss'  // Maybe you need one extra file in dev
+        'index.html': 'index.slim',
+        'page.html': [
+          'header.html',
+          'body.html',
+          'footer.html'  // Maybe you need one extra file in dev
         ]
       }
     }
   }
 });
 
-grunt.loadNpmTasks('grunt-contrib-sass');
+grunt.loadNpmTasks('grunt-slim');
 
-grunt.registerTask('default', ['jshint', 'sass']);
+grunt.registerTask('default', ['jshint', 'slim']);
 ```
 
 ## Compile
 
 ```javascript
 grunt.initConfig({
-  sass: {
+  slim: {
     dist: {
       files: {
-        'main.css': 'main.scss'
+        'index.html': 'index.slim'
       }
     }
   }
@@ -48,16 +48,16 @@ grunt.initConfig({
 
 ## Concat and compile
 
-If you specify an array of `src` paths they will be concatenated. However, in most cases you would want to just `@import` them into `main.scss`.
+If you specify an array of `src` paths they will be concatenated. However, in most cases you would want to just `render` them into `index.slim`.
 
 ```javascript
 grunt.initConfig({
-  sass: {
+  slim: {
     dist: {
       files: {
-      'main.css': [
-          'reset.scss',
-          'main.scss'
+      'index.html': [
+          'header.html',
+          'content.html'
         ]
       }
     }
@@ -71,11 +71,11 @@ You can specify multiple `destination: source` items in `files`.
 
 ```javascript
 grunt.initConfig({
-  sass: {
+  slim: {
     dist: {
       files: {
-        'main.css': 'main.scss',
-        'widgets.css': 'widgets.scss'
+        'index.css': 'index.slim',
+        'sidebar.html': 'sidebar.slim'
       }
     }
   }

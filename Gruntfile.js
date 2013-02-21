@@ -1,8 +1,8 @@
 /*
- * grunt-contrib-sass
- * http://gruntjs.com/
+ * grunt-slim
+ * https://github.com/matsumos/grunt-slim
  *
- * Copyright (c) 2012 Sindre Sorhus, contributors
+ * Copyright (c) 2012-2013 Sindre Sorhus, Keiichiro Matsumoto, contributors
  * Licensed under the MIT license.
  */
 
@@ -25,17 +25,23 @@ module.exports = function(grunt) {
     // Before generating any new files, remove any previously-created files.
     clean: {
       test: [
-        'tmp',
-        '.sass-cache'
+        'tmp'
       ]
     },
 
     // Configuration to be run (and then tested).
-    sass: {
+    slim: {
       compile: {
         files: {
-          'tmp/scss.css': ['test/fixtures/compile.scss'],
-          'tmp/sass.css': ['test/fixtures/compile.sass']
+          'tmp/slim.html': ['test/fixtures/compile.slim']
+        }
+      },
+      pretty: {
+        options: {
+          pretty: true
+        },
+        files: {
+          'tmp/slim-pretty.html': ['test/fixtures/compile.slim']
         }
       }
     },
@@ -62,7 +68,7 @@ module.exports = function(grunt) {
   grunt.registerTask('test', [
     'clean',
     'mkdir:tmp',
-    'sass',
+    'slim',
     'nodeunit',
     'clean'
   ]);

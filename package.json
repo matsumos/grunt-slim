@@ -1,23 +1,23 @@
 {
-  "name": "grunt-contrib-sass",
-  "description": "Compile Sass to CSS",
-  "version": "0.2.2",
-  "homepage": "https://github.com/gruntjs/grunt-contrib-sass",
+  "name": "grunt-slim",
+  "description": "Compile Slim to HTML",
+  "version": "0.1.0",
+  "homepage": "https://github.com/matsumos/grunt-slim",
   "author": {
-    "name": "Grunt Team",
-    "url": "http://gruntjs.com/"
+    "name": "Keiichiro Matsumoto",
+    "url": "http://matsumos.com/"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/gruntjs/grunt-contrib-sass.git"
+    "url": "git://github.com/matsumos/grunt-slim.git"
   },
   "bugs": {
-    "url": "https://github.com/gruntjs/grunt-contrib-sass/issues"
+    "url": "https://github.com/matsumos/grunt-slim/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/gruntjs/grunt-contrib-sass/blob/master/LICENSE-MIT"
+      "url": "https://github.com/matsumos/grunt-slim/blob/master/LICENSE-MIT"
     }
   ],
   "main": "Gruntfile.js",
@@ -42,11 +42,9 @@
   },
   "keywords": [
     "gruntplugin",
-    "scss",
-    "sass",
-    "css",
+    "slim",
     "compile",
     "preprocessor",
-    "style"
+    "html"
   ]
 }

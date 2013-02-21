@@ -1,0 +1,1 @@
+This task requires you to have [Ruby](http://www.ruby-lang.org/en/downloads/) and [Slim](http://slim-lang.com/). If you're on OS X or Linux you probably already have Ruby installed, try `ruby -v` in your terminal. When you've confirmed you have Ruby installed, run `gem install slim` to install Slim.
