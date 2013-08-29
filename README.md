@@ -148,6 +148,26 @@ grunt.initConfig({
 });
 ```
 
+#### Globbing Files
+
+You can specify an entire directory of files that should get compiled into individual files with the specified extension. 
+Example: if `path/to` contained `a.slim` and `b.slim`, the following target would generate these files in `path/to/dest`: `a.html` and `b.html`.
+
+```javascript
+grunt.initConfig({
+  slim: {
+    dist: {
+      files: [{
+        expand: true,
+        cwd: 'path/to',
+        src: ['{,*/}*.slim'],
+        dest: 'path/to/dest',
+        ext: '.html'
+      }]
+    }
+  }
+}
+```
 
 ## Release History
 
