@@ -40,6 +40,8 @@ module.exports = function(grunt) {
         varibales = varibales + '- ' + key + '="' + val + '"' + "\n";
       });
 
+      max = varibales + max;
+
       // Make sure grunt creates the destination folders
       grunt.file.write(f.dest, '');
 
