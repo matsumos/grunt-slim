@@ -33,6 +33,15 @@ module.exports = function(grunt) {
         return grunt.file.read(filepath);
       }).join(grunt.util.normalizelf(grunt.util.linefeed));
 
+      // support for varibales
+      var varibales = "";
+
+      grunt.util._.forEach(options.variables, function(val,key){
+        varibales = varibales + '- ' + key + '="' + val + '"' + "\n";
+      });
+
+      max = varibales + max;
+
       // Make sure grunt creates the destination folders
       grunt.file.write(f.dest, '');
 
