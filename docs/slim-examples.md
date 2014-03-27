@@ -13,7 +13,7 @@ grunt.initConfig({
     },
     dev: {                             // Another target
       options: {                       // Target options
-        style: 'expanded'
+        pretty: true
       },
       files: {
         'index.html': 'index.slim',
