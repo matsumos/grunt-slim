@@ -45,12 +45,12 @@ module.exports = function(grunt) {
       // Make sure grunt creates the destination folders
       grunt.file.write(f.dest, '');
 
-      var win32exe = 'slimrb.bat'
-      var nixexe = 'slimrb'
+      var win32exe = 'slimrb.bat';
+      var nixexe = 'slimrb';
 
       if (options.bundleExec) {
-        win32exe = 'bundle exec ' + win32exe
-        nixexe = 'bundle exec ' + nixexe
+        win32exe = 'bundle exec ' + win32exe;
+        nixexe = 'bundle exec ' + nixexe;
       }
 
       var slim = grunt.util.spawn({
