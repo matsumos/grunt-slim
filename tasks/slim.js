@@ -55,6 +55,9 @@ module.exports = function(grunt) {
         exeFile = 'bundle';
       }
 
+      grunt.log.writeln(args)
+      grunt.log.writeln(exeFile)
+
       var slim = grunt.util.spawn({
         cmd: exeFile,
         args: args
