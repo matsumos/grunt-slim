@@ -53,8 +53,8 @@ module.exports = function(grunt) {
         nixexe = 'bundle exec ' + nixexe;
       }
 
-      grunt.log.info('exes')
-      grunt.log.info(nixexe)
+      grunt.log.writeln('exes')
+      grunt.log.writeln(nixexe)
 
       var slim = grunt.util.spawn({
         cmd: process.platform === 'win32' ? win32exe : nixexe,
