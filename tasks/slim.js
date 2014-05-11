@@ -47,17 +47,16 @@ module.exports = function(grunt) {
 
       var win32exe = 'slimrb.bat';
       var nixexe = 'slimrb';
+      var exeFile = process.platform === 'win32' ? win32exe : nixexe;
 
       if (options.bundleExec) {
-        win32exe = 'bundle exec ' + win32exe;
-        nixexe = 'bundle exec ' + nixexe;
+        args.unshift(exeFile)
+        args.unshift('exec')
+        exeFile = 'bundle';
       }
 
-      grunt.log.writeln('exes')
-      grunt.log.writeln(nixexe)
-
       var slim = grunt.util.spawn({
-        cmd: process.platform === 'win32' ? win32exe : nixexe,
+        cmd: exeFile,
         args: args
       }, function(error, result, code) {
         if (code === 127) {
