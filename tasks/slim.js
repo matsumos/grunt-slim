@@ -25,8 +25,6 @@ module.exports = function(grunt) {
       }
       var args = [f.dest, '--stdin'].concat(helpers.optsToArgs(options));
 
-      grunt.log.writeln(args)
-
       var max = f.src.filter(function(filepath) {
         // Warn on and remove invalid source files (if nonull was set).
         if (!grunt.file.exists(filepath)) {
@@ -60,9 +58,6 @@ module.exports = function(grunt) {
         args.unshift('exec')
         exeFile = 'bundle';
       }
-
-      grunt.log.writeln(args)
-      grunt.log.writeln(exeFile)
 
       var slim = grunt.util.spawn({
         cmd: exeFile,
