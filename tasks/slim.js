@@ -19,6 +19,10 @@ module.exports = function(grunt) {
     grunt.verbose.writeflags(options, 'Options');
 
     grunt.util.async.forEachSeries(this.files, function(f, next) {
+      var bundleExec = options.bundleExec;
+      if (bundleExec) {
+        delete options.bundleExec;
+      }
       var args = [f.dest, '--stdin'].concat(helpers.optsToArgs(options));
 
       grunt.log.writeln(args)
@@ -51,7 +55,7 @@ module.exports = function(grunt) {
       var nixexe = 'slimrb';
       var exeFile = process.platform === 'win32' ? win32exe : nixexe;
 
-      if (options.bundleExec) {
+      if (bundleExec) {
         args.unshift(exeFile)
         args.unshift('exec')
         exeFile = 'bundle';
