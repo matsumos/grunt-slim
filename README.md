@@ -34,6 +34,11 @@ Type: `Boolean`
 
 Show a full traceback on error.
 
+#### bundleExec
+Type: `Boolean`
+
+Run `slimrb` preceding it with `bundle exec`.
+
 #### compile
 Type: `Boolean`
 
