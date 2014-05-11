@@ -21,6 +21,8 @@ module.exports = function(grunt) {
     grunt.util.async.forEachSeries(this.files, function(f, next) {
       var args = [f.dest, '--stdin'].concat(helpers.optsToArgs(options));
 
+      grunt.log.writeln(args)
+
       var max = f.src.filter(function(filepath) {
         // Warn on and remove invalid source files (if nonull was set).
         if (!grunt.file.exists(filepath)) {
