@@ -19,6 +19,10 @@ module.exports = function(grunt) {
     grunt.verbose.writeflags(options, 'Options');
 
     grunt.util.async.forEachSeries(this.files, function(f, next) {
+      var bundleExec = options.bundleExec;
+      if (bundleExec) {
+        delete options.bundleExec;
+      }
       var args = [f.dest, '--stdin'].concat(dargs(options));
 
       var max = f.src.filter(function(filepath) {
@@ -45,8 +49,18 @@ module.exports = function(grunt) {
       // Make sure grunt creates the destination folders
       grunt.file.write(f.dest, '');
 
+      var win32exe = 'slimrb.bat';
+      var nixexe = 'slimrb';
+      var exeFile = process.platform === 'win32' ? win32exe : nixexe;
+
+      if (bundleExec) {
+        args.unshift(exeFile)
+        args.unshift('exec')
+        exeFile = 'bundle';
+      }
+
       var slim = grunt.util.spawn({
-        cmd: process.platform === 'win32' ? 'slimrb.bat' : 'slimrb',
+        cmd: exeFile,
         args: args
       }, function(error, result, code) {
         if (code === 127) {
