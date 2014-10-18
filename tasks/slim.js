@@ -2,7 +2,7 @@
  * grunt-slim
  * https://github.com/matsumos/grunt-slim
  *
- * Copyright (c) 2012-2013 Sindre Sorhus, Keiichiro Matsumoto, contributors
+ * Copyright (c) 2012-2014 Sindre Sorhus, Keiichiro Matsumoto, contributors
  * Licensed under the MIT license.
  */
 
@@ -10,16 +10,16 @@
 
 module.exports = function(grunt) {
   var path = require('path');
+  var dargs = require('dargs');
 
   grunt.registerMultiTask('slim', 'Compile Slim to HTML', function() {
-    var helpers = require('grunt-lib-contrib').init(grunt);
     var options = this.options();
     var cb = this.async();
 
     grunt.verbose.writeflags(options, 'Options');
 
     grunt.util.async.forEachSeries(this.files, function(f, next) {
-      var args = [f.dest, '--stdin'].concat(helpers.optsToArgs(options));
+      var args = [f.dest, '--stdin'].concat(dargs(options));
 
       var max = f.src.filter(function(filepath) {
         // Warn on and remove invalid source files (if nonull was set).

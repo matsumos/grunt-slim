@@ -2,7 +2,7 @@
  * grunt-slim
  * https://github.com/matsumos/grunt-slim
  *
- * Copyright (c) 2012-2013 Sindre Sorhus, Keiichiro Matsumoto, contributors
+ * Copyright (c) 2012-2014 Sindre Sorhus, Keiichiro Matsumoto, contributors
  * Licensed under the MIT license.
  */
 
