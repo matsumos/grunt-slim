@@ -25,6 +25,8 @@ module.exports = function(grunt) {
       }
       var args = [f.dest, '--stdin'].concat(dargs(options));
 
+      options.bundleExec = bundleExec;
+
       var max = f.src.filter(function(filepath) {
         // Warn on and remove invalid source files (if nonull was set).
         if (!grunt.file.exists(filepath)) {
