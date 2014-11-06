@@ -11,14 +11,17 @@
 module.exports = function(grunt) {
   var path = require('path');
   var dargs = require('dargs');
+  var async     = require('async');
 
   grunt.registerMultiTask('slim', 'Compile Slim to HTML', function() {
     var options = this.options();
     var cb = this.async();
 
     grunt.verbose.writeflags(options, 'Options');
+    process.stdout.setMaxListeners(0);
+    process.stderr.setMaxListeners(0);
 
-    grunt.util.async.forEachSeries(this.files, function(f, next) {
+    async.each(this.files, function(f, next) {
       var bundleExec = options.bundleExec;
       if (bundleExec) {
         delete options.bundleExec;

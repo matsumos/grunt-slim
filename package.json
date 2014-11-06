@@ -28,7 +28,8 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "dargs": "^2.0.3"
+    "dargs": "^2.0.3",
+    "async": "~0.9.0"
   },
   "devDependencies": {
     "grunt-contrib-clean": "~0.4.0",
