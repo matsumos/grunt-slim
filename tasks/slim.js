@@ -40,14 +40,14 @@ module.exports = function(grunt) {
         return grunt.file.read(filepath);
       }).join(grunt.util.normalizelf(grunt.util.linefeed));
 
-      // support for varibales
-      var varibales = "";
+      // support for variables
+      var variables = "";
 
       grunt.util._.forEach(options.variables, function(val,key){
-        varibales = varibales + '- ' + key + '="' + val + '"' + "\n";
+        variables = variables + '- ' + key + '="' + val + '"' + "\n";
       });
 
-      max = varibales + max;
+      max = variables + max;
 
       // Make sure grunt creates the destination folders
       grunt.file.write(f.dest, '');
