@@ -57,8 +57,8 @@ module.exports = function(grunt) {
       var exeFile = process.platform === 'win32' ? win32exe : nixexe;
 
       if (bundleExec) {
-        args.unshift(exeFile)
-        args.unshift('exec')
+        args.unshift(exeFile);
+        args.unshift('exec');
         exeFile = 'bundle';
       }
 
