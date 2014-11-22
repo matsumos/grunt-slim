@@ -39,6 +39,11 @@ Type: `Boolean`
 
 Run `slimrb` preceding it with `bundle exec`.
 
+#### parallelLimit
+Type: 'Integer'
+
+Maximum number of slim files to process in parallel. Default is `1`.
+
 #### compile
 Type: `Boolean`
 

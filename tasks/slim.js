@@ -11,18 +11,32 @@
 module.exports = function(grunt) {
   var path = require('path');
   var dargs = require('dargs');
+  var async     = require('async');
 
   grunt.registerMultiTask('slim', 'Compile Slim to HTML', function() {
     var options = this.options();
     var cb = this.async();
+    var parallelLimit;
+
+    if (options.parallelLimit) {
+      parallelLimit = options.parallelLimit;
+      delete options.parallelLimit;
+    } else {
+      parallelLimit = 1;
+    }
+
+    var bundleExec = options.bundleExec;
+    if (bundleExec) {
+      delete options.bundleExec;
+    }
 
     grunt.verbose.writeflags(options, 'Options');
+    if (parallelLimit > 10) {
+      process.stdout.setMaxListeners(parallelLimit);
+      process.stderr.setMaxListeners(parallelLimit);
+    }
 
-    grunt.util.async.forEachSeries(this.files, function(f, next) {
-      var bundleExec = options.bundleExec;
-      if (bundleExec) {
-        delete options.bundleExec;
-      }
+    async.eachLimit(this.files, parallelLimit, function(f, next) {
       var args = [f.dest, '--stdin'].concat(dargs(options));
 
       var max = f.src.filter(function(filepath) {
@@ -37,14 +51,14 @@ module.exports = function(grunt) {
         return grunt.file.read(filepath);
       }).join(grunt.util.normalizelf(grunt.util.linefeed));
 
-      // support for varibales
-      var varibales = "";
+      // support for variables
+      var variables = "";
 
       grunt.util._.forEach(options.variables, function(val,key){
-        varibales = varibales + '- ' + key + '="' + val + '"' + "\n";
+        variables = variables + '- ' + key + '="' + val + '"' + "\n";
       });
 
-      max = varibales + max;
+      max = variables + max;
 
       // Make sure grunt creates the destination folders
       grunt.file.write(f.dest, '');
@@ -54,8 +68,8 @@ module.exports = function(grunt) {
       var exeFile = process.platform === 'win32' ? win32exe : nixexe;
 
       if (bundleExec) {
-        args.unshift(exeFile)
-        args.unshift('exec')
+        args.unshift(exeFile);
+        args.unshift('exec');
         exeFile = 'bundle';
       }
 
