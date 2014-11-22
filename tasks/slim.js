@@ -25,16 +25,16 @@ module.exports = function(grunt) {
       parallelLimit = 1;
     }
 
+    var bundleExec = options.bundleExec;
+    if (bundleExec) {
+      delete options.bundleExec;
+    }
 
     grunt.verbose.writeflags(options, 'Options');
     process.stdout.setMaxListeners(parallelLimit);
     process.stderr.setMaxListeners(parallelLimit);
 
     async.eachLimit(this.files, parallelLimit, function(f, next) {
-      var bundleExec = options.bundleExec;
-      if (bundleExec) {
-        delete options.bundleExec;
-      }
       var args = [f.dest, '--stdin'].concat(dargs(options));
 
       var max = f.src.filter(function(filepath) {
