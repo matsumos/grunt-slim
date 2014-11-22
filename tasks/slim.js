@@ -31,8 +31,10 @@ module.exports = function(grunt) {
     }
 
     grunt.verbose.writeflags(options, 'Options');
-    process.stdout.setMaxListeners(parallelLimit);
-    process.stderr.setMaxListeners(parallelLimit);
+    if (parallelLimit > 10) {
+      process.stdout.setMaxListeners(parallelLimit);
+      process.stderr.setMaxListeners(parallelLimit);
+    }
 
     async.eachLimit(this.files, parallelLimit, function(f, next) {
       var args = [f.dest, '--stdin'].concat(dargs(options));
