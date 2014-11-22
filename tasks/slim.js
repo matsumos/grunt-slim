@@ -12,17 +12,25 @@ module.exports = function(grunt) {
   var path = require('path');
   var dargs = require('dargs');
   var async     = require('async');
-  var asyncLimit = 10;
 
   grunt.registerMultiTask('slim', 'Compile Slim to HTML', function() {
     var options = this.options();
     var cb = this.async();
+    var parallelLimit;
+
+    if (options.parallelLimit) {
+      parallelLimit = options.parallelLimit;
+      delete options.parallelLimit;
+    } else {
+      parallelLimit = 1;
+    }
+
 
     grunt.verbose.writeflags(options, 'Options');
-    process.stdout.setMaxListeners(asyncLimit);
-    process.stderr.setMaxListeners(asyncLimit);
+    process.stdout.setMaxListeners(parallelLimit);
+    process.stderr.setMaxListeners(parallelLimit);
 
-    async.eachLimit(this.files, asyncLimit, function(f, next) {
+    async.eachLimit(this.files, parallelLimit, function(f, next) {
       var bundleExec = options.bundleExec;
       if (bundleExec) {
         delete options.bundleExec;
